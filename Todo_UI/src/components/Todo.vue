@@ -9,7 +9,9 @@
             <v-btn class="btns" @click="saveItem(updatedName,item)">Save</v-btn>
           </div>
           <div v-show="!item.showItem">
-            <v-btn class="btns" @click="updateItem(item)">Update</v-btn>
+            <v-btn class="btns" @click="updateItem(item)">
+              <v-icon>mdi-pencil</v-icon>
+            </v-btn>
           </div>
           <v-btn class="btns" @click="deleteItem(item)">Remove</v-btn>
         </div>
