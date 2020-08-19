@@ -43,6 +43,7 @@
 
 <script>
 import todo from "./components/Todo";
+import getTodo from "./services/addItem-service";
 export default {
   data() {
     return {
@@ -80,8 +81,12 @@ export default {
     saveItem(updtdName, item) {
       this.todoItems = this.todoItems.map((cur) => {
         if (cur.id === item.id) {
-          cur.name = updtdName;
-          cur.showItem = !cur.showItem;
+          if (updtdName.trim()) {
+            cur.name = updtdName;
+            cur.showItem = !cur.showItem;
+          } else {
+            cur.showItem = !cur.showItem;
+          }
         }
         return cur;
       });
@@ -91,6 +96,15 @@ export default {
     getTodoItems: function () {
       return this.todoItems;
     },
+  },
+  mounted() {
+    getTodo()
+      .then((resp) => {
+        console.log(resp);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   },
 };
 </script>

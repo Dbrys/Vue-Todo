@@ -5,10 +5,10 @@
         <v-text-field v-model="updatedName" v-show="item.showItem" :label="item.name"></v-text-field>
         <div v-show="!item.showItem ">{{item.name}}</div>
         <div style="display:flex">
-          <div v-if="changeToText">
+          <div v-show="item.showItem">
             <v-btn class="btns" @click="saveItem(updatedName,item)">Save</v-btn>
           </div>
-          <div v-if="!changeToText">
+          <div v-show="!item.showItem">
             <v-btn class="btns" @click="updateItem(item)">Update</v-btn>
           </div>
           <v-btn class="btns" @click="deleteItem(item)">Remove</v-btn>
@@ -45,6 +45,7 @@ export default {
         this.updatedName = "";
       } else {
         this.changeToText = !this.changeToText;
+        this.$emit("saveItem", updtdName, itm);
       }
     },
   },
